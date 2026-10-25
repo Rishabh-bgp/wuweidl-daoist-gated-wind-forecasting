@@ -92,7 +92,7 @@ MAE, RMSE (m/s), MAPE (%, computed only where observed wind speed ≥ 0.5 m/s to
 
 Er. Rishabh Aryan and Manimozhi I (2026). "Riding the Wind Like Liezi: Re-Embodying Daoist Wu Wei and Feng-Qi Dynamics in Hybrid Deep Learning Models for Ultra-Accurate Wind Speed Forecasting." *Multidisciplinary Journal of Academic Publications*.
 
-Related registered work: Er. Rishabh Aryan (2026). "Embodying Wu Wei and Ziran in Contemporary Practice: Daoist Philosophical Principles Applied to a Hybrid CNN-BiLSTM-Attention Model for Spatiotemporal Wind Speed Forecasting – Insights from Indian SCADA Data, Chennai ARIMA/SARIMA Analysis, and African …" Government of India (Copyright Office), LD-34737/2026-CO.
+Related registered work: Er. Rishabh Aryan (2026). "Embodying Wu Wei and Ziran in Comptemporary Practice: Daoist Philosophical Principles Applied to a Hybrid CNN-BiLSTM-Attention Model for Spatiotemporal Wind Speed Forecasting-Insights from Indian SCADA Data, Chennai ARIMA/SARIMA Analysis, and African …" Government of India (Copyright Office), LD-34737/2026-CO.
 
 ## License
 
