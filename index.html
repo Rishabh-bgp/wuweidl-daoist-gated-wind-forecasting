@@ -1,16 +1,16 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="color-scheme" content="dark"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WuWeiDL · 無為 — live demo on synthetic wind data</title><meta name="description" content="A gate that knows when not to act · live browser demo. Interactive wind speed forecast vs persistence on synthetic data.">
 <link rel="stylesheet" href="style.css"></head><body class="center">
-<header><div class="tri" aria-hidden="true">☵</div><h1>WuWeiDL · 無為</h1><p>A gate that knows when not to act · live browser demo</p><p class="tricap">☵ Water — Kǎn: flowing without forcing</p></header>
+<header><div class="tri" aria-hidden="true">☵</div><h1>WuWeiDL · 無為</h1><p>A gate that knows when not to act · live browser demo</p><p class="bil">無為 non-action · 風 wind · 預測 forecast</p><p class="tricap">☵ Water — Kǎn: flowing without forcing</p></header>
 <main>
-<section class="card wide"><div class="legend"><span><i style="background:var(--obs)"></i>observed</span><span><i style="background:var(--model)"></i>demo model, gold (1 h ahead)</span><span><i style="background:var(--pers)"></i>persistence, grey</span></div>
+<section class="card wide"><div class="legend"><span><i style="background:var(--obs)"></i>observed 觀測</span><span><i style="background:var(--model)"></i>demo model 預測, gold (1 h ahead)</span><span><i style="background:var(--pers)"></i>persistence 持續, grey</span></div>
 <canvas id="chart" aria-label="One week of synthetic wind speed with the demo model forecast and the persistence forecast"></canvas></section>
-<section class="card"><h3>Try it</h3>
+<section class="card"><h3>Try it · 試試</h3>
 <label>Start of the 7-day window: day <span id="startv"></span></label><input id="start" type="range" min="0" value="0">
 <label>Add a gust to the latest reading: <span id="gustv"></span> m/s</label><input id="gust" type="range" min="-4" max="4" step="0.1" value="0">
 <p id="whatif"></p><p class="cap">When turbulence rises, the gate closes and the forecast falls back to persistence. Push the gust slider to watch the gate move.</p><div id="extra"></div></section>
-<section class="card"><h3>Test-period metrics</h3><div id="metrics"></div><p id="verdict"></p></section>
-<section class="card wide warn"><b>Synthetic data, small demo model.</b> Everything here uses computer-generated wind data, not the confidential SCADA data. The browser model is a small re-implementation trained in about a minute; it is not the full method from the paper and these are not the paper's results. It predicts the change from the last reading and is compared honestly with persistence.</section>
+<section class="card"><h3>Test-period metrics · 結果</h3><div id="metrics"></div><p id="verdict"></p></section>
+<section class="card wide warn"><b>Synthetic data, small demo model.</b> Everything here uses computer-generated wind data, not the confidential SCADA data. The browser model is a small JavaScript port trained in about a minute; it is not the full method from the paper and these are not the paper's results. It predicts the change from the last reading and is compared honestly with persistence.</section>
 </main>
-<footer>Code, notebook and full Python implementation: <a href="https://github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting">github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting</a> · MIT licence · © 2026 Rishabh Aryan</footer>
+<footer>Code, notebook and full Python implementation: <a href="https://github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting">github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting</a> · MIT license · © 2026 Rishabh Aryan</footer>
 <script>window.DEMO_CFG={extra:(r)=>{document.getElementById('extra').innerHTML=`<div class=gate><div style="width:${(r.gate*100).toFixed(0)}%"></div></div><div class=cap>gate ${r.gate.toFixed(2)} · I<sub>u</sub> ${r.iu.toFixed(3)}</div>`;}};</script><script src="data.js"></script><script src="model.js"></script><script src="app.js"></script></body></html>
