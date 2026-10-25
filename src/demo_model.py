@@ -1,5 +1,5 @@
 """Small JavaScript-friendly demo model (numpy forward used by tests; torch forward used for training).
-The browser re-implements forward() in demo/model.js; tests/test_demo_parity.py checks they agree."""
+The browser ports forward() in demo/model.js; tests/test_demo_parity.py checks they agree."""
 import numpy as np
 
 VARIANT = "gated"
@@ -9,7 +9,7 @@ R = 6           # fuzzy rules (anfis)
 
 
 def features(X, mu, sd, xp):
-    """Normalised lags and turbulence intensity Iu = std/mean of the last 6 readings."""
+    """Normalized lags and turbulence intensity Iu = std/mean of the last 6 readings."""
     Xn = (X - mu) / sd
     last6 = X[:, -6:]
     Iu = last6.std(axis=1) / (last6.mean(axis=1) + 0.1) if xp is np else None

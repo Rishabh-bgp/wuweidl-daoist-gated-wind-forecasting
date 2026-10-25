@@ -1,4 +1,4 @@
-// Browser re-implementation of src/demo_model.py forward(). Pure JS, no libraries.
+// Browser port of src/demo_model.py forward(). Pure JS, no libraries.
 // tests/test_demo_parity.py runs this file with node and compares against Python.
 (function (root) {
   function predictChange(W, win) {           // win: array of LOOKBACK raw wind speeds (m/s)

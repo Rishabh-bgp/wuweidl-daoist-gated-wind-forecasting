@@ -1,4 +1,4 @@
-"""WuWeiDL (small CPU reimplementation).
+"""WuWeiDL (small CPU reference implementation).
 
 Modules (paper section 4): Feng-Qi Turbulence Encoder (FQTE) -> dilated temporal CNN ->
 Wu Wei Gating Module (per-head gates G_k and context weight w_ctx) ->

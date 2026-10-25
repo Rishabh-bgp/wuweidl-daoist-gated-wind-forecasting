@@ -1,10 +1,9 @@
-![Banner: crimson and black ink-wash background with the gold trigram ☵ (坎 Kǎn, Water), the title and a red seal stamp](docs/img/banner.jpg)
-
+<img src="docs/img/banner.png" width="100%" alt="Banner: dark crimson-to-black background with the repository title and subtitle in gold on the left, and its gold I Ching trigram and red seal stamp on the right">
 # WuWeiDL: Daoist-inspired Wu Wei gating and Feng-Qi turbulence encoding for wind speed forecasting
 
 *無為 non-action · 風 wind · 預測 forecast*
 
-[![Live demo](https://img.shields.io/badge/Live%20demo-open-a3191b)](https://rishabh-bgp.github.io/wuweidl-daoist-gated-wind-forecasting/) [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting/blob/main/notebooks/walkthrough.ipynb) [![CI](https://github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting/actions/workflows/ci.yml/badge.svg)](https://github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-d4af37.svg)](LICENSE) ![Python](https://img.shields.io/badge/python-3.10%2B-1a1a1a) ![Data](https://img.shields.io/badge/data-synthetic-1a1a1a)
+[![Live demo](https://img.shields.io/badge/Live%20demo-open-b3121b)](https://rishabh-bgp.github.io/wuweidl-daoist-gated-wind-forecasting/) [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting/blob/main/notebooks/walkthrough.ipynb) [![CI](https://github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting/actions/workflows/ci.yml/badge.svg)](https://github.com/Rishabh-bgp/wuweidl-daoist-gated-wind-forecasting/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-d4af37.svg)](LICENSE) ![Python](https://img.shields.io/badge/python-3.10%2B-1a1a1a) ![Data](https://img.shields.io/badge/data-synthetic-1a1a1a)
 
 [![Screenshot of the live demo: one week of synthetic wind speed with the model forecast and the persistence forecast, plus sliders and metrics](docs/img/demo.jpg)](https://rishabh-bgp.github.io/wuweidl-daoist-gated-wind-forecasting/)
 
@@ -76,7 +75,7 @@ Both models predict the change from the last reading and are compared with persi
 | Browser demo model | 0.584 | 0.815 | 0.803 |
 | Persistence (demo test period) | 0.656 | 0.886 | 0.767 |
 
-In this short demo the model beats persistence on every row above. The browser demo uses a smaller model (re-implemented in JavaScript); `python scripts/build_demo.py` rebuilds it.
+In this short demo the model beats persistence on every row above. The browser demo uses a smaller model (ported to JavaScript); `python scripts/build_demo.py` rebuilds it.
 
 MAE, RMSE (m/s), MAPE (%, computed only where observed wind speed ≥ 0.5 m/s to avoid division by near-zero) and R².
 
