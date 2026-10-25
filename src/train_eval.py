@@ -45,14 +45,15 @@ def run(model, data, epochs, lr=2e-3, bs=128, ablate=()):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv", default="data/synthetic_scada.csv" if os.path.exists("data/synthetic_scada.csv") else None, help="SCADA-style CSV (default: committed synthetic CSV)"); ap.add_argument("--lookback", type=int, default=48)
+    ap.add_argument("--csv", default="data/synthetic/synthetic_scada.csv" if os.path.exists("data/synthetic/synthetic_scada.csv") else None, help="SCADA-style CSV (default: committed synthetic CSV)"); ap.add_argument("--lookback", type=int, default=48)
     ap.add_argument("--epochs", type=int, default=12); ap.add_argument("--quick", action="store_true")
     ap.add_argument("--gate_mode", choices=["paper", "patent"], default="paper")
     ap.add_argument("--no_ablation", action="store_true"); ap.add_argument("--out", default="results")
     a = ap.parse_args()
-    if a.quick: a.epochs, a.lookback = 4, 24
+    if a.quick: a.epochs, a.lookback, a.no_ablation = 4, 24, True
     torch.manual_seed(0)
     raw = load_scada_csv(a.csv) if a.csv else synthetic_scada(24 * 90)
+    if a.quick: raw = raw.iloc[-24 * 60:]
     df = add_features(raw)
     X, y = make_windows(df, lookback=a.lookback)
     ws_col = list(df.columns).index("wind_speed")
@@ -60,7 +61,8 @@ def main():
     tr, va, te = chrono_split(len(X))
     sc = Scaler().fit(X[tr]); Xs = sc.transform(X).astype("float32")
     pm, ps = phi[tr].mean(0), phi[tr].std(0) + 1e-6; phin = ((phi - pm) / ps).astype("float32")
-    ym, ys = y[tr].mean(), y[tr].std(); yn = ((y - ym) / ys).astype("float32")
+    last = X[:, -1, ws_col]; d = y - last   # predict the change from the last reading
+    ym, ys = d[tr].mean(), d[tr].std(); yn = ((d - ym) / ys).astype("float32")
     pack = lambda s: (Xs[s], phin[s], iu[s], lap[s], yn[s])
     results = {"persistence": regression_metrics(y[te], X[te][:, -1, ws_col])}
     variants = {"WuWeiDL": {}} if a.no_ablation else {
@@ -75,7 +77,7 @@ def main():
         m = run(m, (pack(tr), pack(va)), a.epochs, ablate=cfg.get("ablate", ()))
         m.eval()
         with torch.no_grad():
-            p = m(*[torch.tensor(v) for v in pack(te)[:4]]).numpy() * ys + ym
+            p = m(*[torch.tensor(v) for v in pack(te)[:4]]).numpy() * ys + ym + last[te]
             G = m.cache["G"].mean(1).numpy()
         results[name] = regression_metrics(y[te], p)
         if name == "WuWeiDL":

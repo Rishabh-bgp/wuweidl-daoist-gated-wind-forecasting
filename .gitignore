@@ -3,7 +3,9 @@ __pycache__/
 .venv/
 venv/
 data/*
-!data/synthetic_*.csv
+!data/synthetic/
+data/synthetic/*
+!data/synthetic/synthetic_*.csv
 results/
 *.pt
 .env
